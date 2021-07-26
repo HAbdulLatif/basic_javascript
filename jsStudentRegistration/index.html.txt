@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style>
+                form {
+                    /* Just to center the form on the page */
+                    margin: 0 auto;
+                    width: 80%;
+                    /* To see the outline of the form */
+                    padding: 1em;
+                    border: 1px solid #CCC;
+                    border-radius: 1em;
+                }
+
+                    form div + div {
+                        margin-top: 1em;
+                    }
+
+                label {
+                    /* To make sure that all labels have the same size and are properly aligned */
+                    display: inline-block;
+                    /*width: 90px;*/
+                    /*text-align: right;*/
+                }
+
+                .label-name {
+                    width: 20%;
+                    text-align: left;
+                }
+
+                input, textarea {
+                    /* To make sure that all text fields have the same font settings
+        By default, textareas have a monospace font */
+                    font: 1em sans-serif;
+                    /* To give the same size to all text field */
+                    width: 300px;
+                    -moz-box-sizing: border-box;
+                    box-sizing: border-box;
+                    /* To harmonize the look & feel of text field border */
+                    border: 1px solid #999;
+                }
+
+                    input:focus, textarea:focus {
+                        /* To give a little highlight on active elements */
+                        border-color: #000;
+                    }
+
+                textarea {
+                    /* To properly align multiline text fields with their labels */
+                    vertical-align: top;
+                    /* To give enough room to type some text */
+                    height: 5em;
+                    /* To allow users to resize any textarea vertically
+        It does not work on every browsers */
+                    resize: vertical;
+                }
+
+                .button {
+                    /* To position the buttons to the same position of the text fields */
+                    padding-left: 90px; /* same size as the label elements */
+                }
+
+                button {
+                    /* This extra margin represent roughly the same space as the space
+        between the labels and their text fields */
+                    margin-left: .5em;
+                }
+
+                input[type=radio], input[type=checkbox] {
+                    width: 20px;
+                    cursor: pointer;
+                }
+
+                #result_grid {
+                    margin: 0 auto;
+                    width: 80%;
+                    padding: 1em;
+                    border: 1px solid #CCC;
+                    border-radius: 1em;
+                }
+
+                table {
+                    border-spacing: 5px;
+                }
+
+                button {
+                    width: 100px;
+                }
+    </style>
+
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data">
+        <div>
+            <label class="label-name" for="name">Name:</label>
+            <input type="text" id="nametxt" placeholder="Enter your name" required />
+        </div>
+        <div>
+            <label class="label-name">Gender:</label>
+            <input type="radio" id="female" name="gender" value="female" checked><label for="female" class="abc">Female</label>
+            <input type="radio" id="male" name="gender" value="male"><label for="male" class="abc">Male</label>
+        </div>
+        <div>
+            <label class="label-name">Date Of Birth:</label>
+            <input type="date" name="dob" id="dob">
+        </div>
+        <div>
+            <label for="nationlity" class="label-name">Nationality</label>
+            <select id="nationlitydd">
+                <option value="indian">Indian</option>
+                <option value="pakistan">Pakistani</option>
+            </select>
+        </div>
+        <div>
+            <label for="language" class="label-name">Language:</label>
+            <input type="checkbox" value="english" name="lang" id="englishchk" checked class="chk" /><label for="english">English</label>
+            <input type="checkbox" value="hindi" name="lang" id="hindichk" class="chk" /><label for="hindi">Hindi</label>
+            <input type="checkbox" value="kanada" name="lang" id="kanadachk" class="chk" /><label for="kanada">Kanada</label>
+            <input type="checkbox" value="punjabi" name="lang" id="punjabichk" class="chk" /><label for="punjabi">Punjabi</label>
+        </div>
+        <!--<div>
+            <label class="label-name">Phone No:</label>
+            <input type="number" name="phone_no" required>
+        </div>-->
+        <div>
+            <label for="mail" class="label-name">E-mail:</label>
+            <input type="email" id="mailtxt" required placeholder="abc@efg.com" />
+        </div>
+        <div>
+            <label for="photo" class="label-name">Photo:</label>
+            <input type="file" name="File1" id="File1" accept="image/*" placeholder="Upload your photo" />
+        </div>
+        <div>
+            <label for="msg" class="label-name">Message:</label>
+            <textarea id="msgtxt" placeholder="Add your message"></textarea>
+        </div>
+
+        <div class="button">
+            <button type="submit" onclick="savedata();">Save</button>
+        </div>
+    </form>
+    <div id="result_grid">
+        <div id="edit_view_panel">
+            <!--<input type="button" value="View" />
+            <input type="button" value="Edit" />-->
+            <button type="submit" value="View"> View </button>
+            <button type="submit" value="Edit"> Edit </button>
+        </div>
+        <div>
+            <table id="form_result">
+                <tr>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>DOB</th>
+                    <th>Nationality</th>
+                    <th>Language</th>
+                    <th>Email</th>
+                    <th>Photo</th>
+                    <th>Message</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+
+    var checkedValue = [];
+    var row;
+    var data;
+
+    function getRadioValue(theRadioGroup) {
+        var elements = document.getElementsByName(theRadioGroup);
+        for (var i = 0, l = elements.length; i < l; i++) {
+            if (elements[i].checked) {
+                return elements[i].value;
+            }
+        }
+    }
+
+    function getCheckBox(thisCheckBoxGroup) {
+       // var checkedValue = [];
+        var inputElements = document.getElementsByName(thisCheckBoxGroup);
+        for (var i = 0; inputElements[i]; ++i) {
+            if (inputElements[i].checked) {
+                 checkedValue.push(inputElements[i].value);              
+            }
+
+        } return checkedValue;
+    }
+
+    function savedata() {
+
+        var nationaldd = document.getElementById("nationlitydd");
+         data = {
+            "name": document.getElementById('nametxt').value,
+            "gender": getRadioValue('gender'),
+            "dob": document.getElementById('dob').value,
+            "nationality": nationaldd.options[nationaldd.selectedIndex].text,
+            "lang": getCheckBox("lang"),
+            "email": document.getElementById('mailtxt').value,
+            "filename" : document.getElementById('File1').value,
+            "message": document.getElementById('msgtxt').value
+        }
+        console.log(data);      
+        createtablerow();
+
+
+    }
+
+    function createtablerow() {
+
+        table = document.getElementById('form_result');    
+        var columnCount = table.rows[0].cells.length;
+
+         //Add the data rows.
+            row = table.insertRow(-1);
+
+            var cell1 = row.insertCell(-1);
+            var cell2 = row.insertCell(-1);
+            var cell3 = row.insertCell(-1);
+            var cell4 = row.insertCell(-1);
+            var cell5 = row.insertCell(-1);
+            var cell6 = row.insertCell(-1);
+            var cell7 = row.insertCell(-1);
+            var cell8 = row.insertCell(-1);
+
+            cell1.innerHTML = data.name;;
+            cell2.innerHTML = data.gender
+            cell3.innerHTML = data.dob;
+            cell4.innerHTML = data.nationality;
+            cell5.innerHTML = data.lang;
+            cell6.innerHTML = data.email;
+            cell7.innerHTML = data.filename;
+            cell8.innerHTML = data.message;
+             //here i am adding the row
+            table.appendChild(row);
+
+
+    }
+</script>

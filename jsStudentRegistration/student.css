@@ -1,0 +1,57 @@
+body{
+    overflow:hidden;
+}
+input{
+    padding:0.55rem;
+    width:20%;
+    display:block;
+    margin-top: 12px;
+    outline:none;
+    border:1px solid green;
+}
+input:active{
+    outline:1px solid black;
+}
+button{
+    padding:0.55rem;
+    width: 21.5%;
+    margin:12px 0px 0px 0px;
+    cursor: pointer;
+}
+.registration-box{
+    position:relative;
+    left:40%;
+    top:12px;
+}
+table{
+    border:2px solid green;
+    width:60%;
+    position: relative;
+    left:20%;
+    top:80px;
+    border-collapse: collapse;
+}
+
+tr,td,th{
+    border:1px solid green;
+    text-align: center;
+}
+
+.action-button{
+    padding:0.22rem;
+    width:50px;
+    margin-left: 4px;
+    cursor: pointer;
+}
+.text-muted{
+    color:rgb(194, 194, 194)
+}
+.error-messages{
+    color:red;
+    padding:10px;
+}
+/* .profile{
+    width:40px;
+    height:40px;
+    border-radius: 100%;
+} */

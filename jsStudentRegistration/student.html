@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student registration</title>
+    <link rel="stylesheet" href="student.css">
+</head>
+<body>
+    
+    <div class="main-box">
+        <div class="registration-box">
+            <h3 class="error-messages"></h3> 
+            <form id="registration">
+                <input type="text" placeholder="Enter student ID" id="id"/>
+                <input type="text" placeholder="Enter student name" id="id"/>
+                <input type="text" placeholder="Enter study program" id="id"/>
+                <input type="text" placeholder="Enter current samaster" id="id"/>
+                <!-- <input type="file" onchange="uploadProfile(event)" title="upload profile" > -->
+                <button type="button" onclick="addRecord()">Save student</button>
+            </form>
+        </div>
+        <div class="students-table">
+            <table id="allStudents">
+                <thead>
+                <tr>
+                    <!-- <th>Profile</th> -->
+                    <th>Student ID</th>
+                    <th>Student name</th>
+                    <th>Study program</th>
+                    <th>Current samaster</th>
+                    <th>Action</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+<script src="student.js"></script>
